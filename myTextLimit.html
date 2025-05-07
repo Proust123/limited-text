@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Limiter</title>
+
+    <style>
+
+        *{
+            margin : 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main{
+            height : 100vh;
+            width : 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .area{
+            height : 100px;
+            width : 500px;
+        }
+        .output{
+            margin-top: 50px;
+        }
+        .red{
+            color : red
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+    
+
+    <section class = "main">
+        <h1>Type In</h1>
+        <textarea name="" id="" cols="30" rows="10" class = "area"></textarea>
+        <div class = "output"></div>
+
+    </section>
+
+    <script>
+
+        
+        const text = document.querySelector('textarea')
+        const output = document.querySelector('.output')
+
+        let maxLength = 20
+        let warnLength = 15
+
+        text.addEventListener('change', textCounter)
+        text.addEventListener('keyup', textCounter)
+        text.addEventListener('keydown', textCounter)
+
+        function textCounter() {
+
+            let count = text.value.length
+
+            if(count > maxLength) {
+                text.value = text.value.slice(0, maxLength)
+            }
+
+            if(count > warnLength) {
+                output.classList.add('red')
+            }else{
+                output.classList.remove('red')
+            }
+
+            output.innerHTML = maxLength - count + ' Characters Left'
+
+        }
+
+
+    </script>
+
+
+</body>
+</html>
